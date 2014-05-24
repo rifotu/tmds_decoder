@@ -51,42 +51,23 @@
 ## /___/  \  /    Vendor             : Xilinx
 ## \   \   \/     Version            : 3.8
 ##  \   \         Application	     : MIG
-##  /   /         Filename           : readme.txt
+##  /   /         Filename           : isim.tcl
 ## /___/   /\     Date Last Modified : $Date: 2011/05/27 15:50:34 $
-## \   \  /  \    Date Created       : Mon Oct 19 2009
+## \   \  /  \    Date Created       : Mon Mar 2 2009
 ##  \___\/\___\
 ##
 ## Device          : Spartan-6
 ## Design Name     : DDR/DDR2/DDR3/LPDDR
-## Purpose         : Steps to run simulation using ISIM/Modelsim simualtor in this folder
+## Purpose         : To give commands to ISIM Simulator through batch mode
 ## Assumptions:
-##      - Simulation takes place in \sim\<functional/timing> folder of MIG output directory
+##      - Simulation takes place in \sim folder of MIG output directory
 ## Reference       :
 ## Revision History:
 ###############################################################################
 
-The sim/functional folder has files to perform functional simulation of the design.
-
-1. Simulation using ISIM simulator
-  
-A) Following files are provided :
-   
-   1) The '.prj' file contains the list of all the files associated with the design.
-      It also contains the hdl, library and the source file name.       
-    
-   2) The '.tcl' file contains the Tcl commands for simulation and 
-      resume on error. 
-
-   3) The 'isim.bat' has commands which use '.prj' and '.tcl' files. 
-
-     
-B) Steps to run the ISIM simulation:
-
-   The user should execute the file isim.bat, which does the following steps:
-   1) Compiles, elaborates the design and generates the simulation executable using
-      the fuse command in 'isim.bat' file.
-
-   2) Invokes the ISIM GUI.
-
-   3) User can add required signals from objects window to the waveform viewer and run 
-      simulation for specified time using the command "run <time>" in ISIM GUI.
+onerror {resume}
+isim set radix hex
+##wave add /sim_tb_top
+##wcfg open debug.wcfg
+run 200 us
+quit

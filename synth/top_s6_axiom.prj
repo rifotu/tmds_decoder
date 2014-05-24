@@ -1,0 +1,12 @@
+vhdl work ../rtl/components.vhd
+vhdl work ../rtl/camera.vhd
+vhdl work ../rtl/check.vhd
+vhdl work ../rtl/lfsr.vhd
+vhdl work ../rtl/clock_generator_pll_s8_diff.vhd
+vhdl work ../rtl/top_s6_axiom.vhd
+vhdl work ../rtl/lvalid_fvalid_gen.vhd
+vhdl work ../rtl/nto1_pll_diff_rx.vhd
+vhdl work ../rtl/serdes_1_to_n_clk_pll_s8_diff.vhd
+vhdl work ../rtl/serdes_1_to_n_data_s8_diff.vhd
+vhdl work ../rtl/nto1_pll_diff_tx.vhd
+vhdl work ../rtl/serdes_n_to_1_s8_diff.vhd

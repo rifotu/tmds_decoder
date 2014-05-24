@@ -146,5 +146,50 @@ port(
 );
 end component;
 
+component encode is
+    port(
+	i_clk	 : in  std_logic;
+	i_data	 : in  std_logic_vector(7 downto 0);
+	i_audio	 : in  std_logic_vector(3 downto 0);
+	i_cntrl	 : in  std_logic_vector(1 downto 0);
+
+	i_vid_de : in  std_logic;
+	i_aud_de : in  std_logic;
+
+	o_data	 : out std_logic_vector(9 downto 0)
+    );
+end component;
+
+component dvi_encoder_top is
+  port(
+      pclk           : in  std_logic;                        -- pixel clock
+      pclkx2         : in  std_logic;                        -- pixel clock x2
+      pclkx10        : in  std_logic;
+      serdesstrobe   : in  std_logic;                        -- oserdes2 serdesstrobe
+      rstin          : in  std_logic;                        -- reset
+      blue_din       : in  std_logic_vector(7 downto 0);     -- Blue data in
+      green_din      : in  std_logic_vector(7 downto 0);     -- Green data in
+      red_din        : in  std_logic_vector(7 downto 0);     -- Red data in
+      hsync          : in  std_logic;                        -- hsync data
+      vsync          : in  std_logic;                        -- vsync data
+      de             : in  std_logic;                        -- data enable
+      tmds           : out std_logic_vector(4 downto 0);                                                       
+      tmdsb          : out std_logic_vector(4 downto 0)                                                             
+);
+end component;
+
+component serdes_n_to_1 is
+generic(
+      SF              : integer := 8
+);
+port(
+      ioclk           : in  std_logic;
+      serdesstrobe    : in  std_logic;
+      reset           : in  std_logic;
+      gclk            : in  std_logic;
+      datain          : in  std_logic_vector(SF-1 downto 0);
+      iob_data_out    : out std_logic
+);
+end component;
 
 end sub_module_components;
