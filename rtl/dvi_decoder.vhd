@@ -24,16 +24,16 @@ port(
       exrst              : in  std_logic;
  
       rst                : out std_logic;
-      pclk_o             : out std_logic;
-      pclkx2_o           : out std_logic;
-      pclkx10_o          : out std_logic;
+      --pclk_o             : out std_logic;
+      --pclkx2_o           : out std_logic;
+      --pclkx10_o          : out std_logic;
       
-      pllclk0_o          : out std_logic; 
-      pllclk1_o          : out std_logic;
-      pllclk2_o          : out std_logic;
+      --pllclk0_o          : out std_logic; 
+      --pllclk1_o          : out std_logic;
+      --pllclk2_o          : out std_logic;
 
       pll_lckd_o         : out std_logic;
-      serdesstrobe_o     : out std_logic;
+      --serdesstrobe_o     : out std_logic;
       tmdsclk            : out std_logic;
     
       hsync              : out std_logic;
@@ -171,7 +171,7 @@ port map(
     CLKOUT3         => open,
     CLKOUT4         => open,
     CLKOUT5         => open,
-    LOCKED          => pll_lckd,
+    LOCKED          => pll_lckd,   -- output
     CLKFBIN         => clkfbout,
     CLKIN           => rxclk,
     RST             => exrst
@@ -204,7 +204,7 @@ generic map(
 port map (
       PLLIN			=> pllclk0,        	
       GCLK			=> pclkx2, 		
-      LOCKED			=> pll_lckd,            	
+      LOCKED			=> pll_lckd,   -- input            	
       IOCLK			=> pclkx10, 		
       LOCK			=> bufpll_lock,         	
       serdesstrobe		=> serdesstrobe
