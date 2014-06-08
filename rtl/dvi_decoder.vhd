@@ -34,7 +34,7 @@ port(
 
       pll_lckd_o         : out std_logic;
       --serdesstrobe_o     : out std_logic;
-      tmdsclk            : out std_logic;
+      --tmdsclk            : out std_logic;
     
       hsync              : out std_logic;
       vsync              : out std_logic;
@@ -51,6 +51,7 @@ port(
       psalgnerr          : out std_logic;
   
       sdout              : out std_logic_vector(29 downto 0);
+      pixclk             : out std_logic;
       red                : out std_logic_vector( 7 downto 0);
       green              : out std_logic_vector( 7 downto 0);
       blue               : out std_logic_vector( 7 downto 0)
@@ -144,11 +145,11 @@ port map(
     SERDESSTROBE  => open
 );
 
-i_bufg_tmdsclk: BUFG
-port map(
-    I       => rxclk,
-    O       => tmdsclk
-);
+--i_bufg_tmdsclk: BUFG
+--port map(
+--    I       => rxclk,
+--    O       => tmdsclk
+--);
 
 --PLL is used to generate three clocks:
 --1. pclk:    same rate as TMDS clock
@@ -165,9 +166,9 @@ generic map(
 )
 port map(
     CLKFBOUT        => clkfbout,
-    CLKOUT0         => pllclk0,
-    CLKOUT1         => pllclk1,
-    CLKOUT2         => pllclk2, 
+    CLKOUT0         => pllclk0,   -- 10x clk
+    CLKOUT1         => pllclk1,   -- 1x  clk
+    CLKOUT2         => pllclk2,   -- 2x  clk
     CLKOUT3         => open,
     CLKOUT4         => open,
     CLKOUT5         => open,
@@ -177,7 +178,7 @@ port map(
     RST             => exrst
 );
 
-pllclk0_o  <= pllclk0;
+--pllclk0_o  <= pllclk0;
 
 
 i_bufg_pclkbufg: BUFG
@@ -186,7 +187,8 @@ port map(
     O       => pclk
 );
 
-pclk_o  <= pclk;
+--pclk_o  <= pclk;
+pixclk    <= pclk;
 
 i_bufg_pclkx2bufg: BUFG
 port map(
@@ -194,7 +196,7 @@ port map(
     O       => pclkx2
 );
 
-pclkx2_o <= pclkx2;
+--pclkx2_o <= pclkx2;
 pll_lckd_o <= pll_lckd;
 
 i_bufpll_ioclk: BUFPLL
@@ -202,18 +204,18 @@ generic map(
       DIVIDE			=> 5
 )
 port map (
-      PLLIN			=> pllclk0,        	
-      GCLK			=> pclkx2, 		
-      LOCKED			=> pll_lckd,   -- input            	
-      IOCLK			=> pclkx10, 		
-      LOCK			=> bufpll_lock,         	
-      serdesstrobe		=> serdesstrobe
+      PLLIN			=> pllclk0,      -- what clock to use, this must be unbuffered   	
+      GCLK			=> pclkx2,       -- global clock to use as a reference for serdes strobe		 
+      LOCKED			=> pll_lckd,     -- input            	
+      IOCLK			=> pclkx10,      -- clock used to send bits     
+      LOCK			=> bufpll_lock,  -- when the upstream pll is locked       	
+      serdesstrobe		=> serdesstrobe  -- clock used to load data into serdes
 ); 	
 
 reset <= not bufpll_lock;
 
-pclkx10_o <= pclkx10;
-serdesstrobe_o <= serdesstrobe;
+--pclkx10_o <= pclkx10;
+--serdesstrobe_o <= serdesstrobe;
 
 i_decode_decB: decode
 port map(

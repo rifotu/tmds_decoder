@@ -37,9 +37,9 @@ end decode ;
 architecture rtl of decode  is
 
 constant CTRLTOKEN0       : std_logic_vector(9 downto 0) := b"1101010100";
-constant CTRLTOKEN1       : std_logic_vector(9 downto 0):= b"0010101011";
-constant CTRLTOKEN2       : std_logic_vector(9 downto 0):= b"0101010100";
-constant CTRLTOKEN3       : std_logic_vector(9 downto 0):= b"1010101011";
+constant CTRLTOKEN1       : std_logic_vector(9 downto 0) := b"0010101011";
+constant CTRLTOKEN2       : std_logic_vector(9 downto 0) := b"0101010100";
+constant CTRLTOKEN3       : std_logic_vector(9 downto 0) := b"1010101011";
 
 signal flipgear           : std_logic := '0';
 signal flipgearx2         : std_logic := '0';

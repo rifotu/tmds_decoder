@@ -96,8 +96,8 @@ end process;
 
 -----------------------------
 -- Use blank period beginning
--- as a speical marker to
--- align all channel together
+-- as a special marker to
+-- align all channels together
 -----------------------------
 process(clk)
 begin

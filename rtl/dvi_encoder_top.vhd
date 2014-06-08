@@ -12,11 +12,13 @@ use unisim.vcomponents.all;
 
 entity dvi_encoder_top is
   port(
+
       pclk           : in  std_logic;                        -- pixel clock
-      pclkx2         : in  std_logic;                        -- pixel clock x2
-      pclkx10        : in  std_logic;
-      serdesstrobe   : in  std_logic;                        -- oserdes2 serdesstrobe
-      rstin          : in  std_logic;                        -- reset
+  --    pclkx2         : in  std_logic;                        -- pixel clock x2
+  --    pclkx10        : in  std_logic;
+  --    serdesstrobe   : in  std_logic;                        -- oserdes2 serdesstrobe
+  --    rstin          : in  std_logic;                        -- reset
+
       blue_din       : in  std_logic_vector(7 downto 0);     -- Blue data in
       green_din      : in  std_logic_vector(7 downto 0);     -- Green data in
       red_din        : in  std_logic_vector(7 downto 0);     -- Red data in
@@ -45,8 +47,84 @@ signal tmdsclkint    : std_logic_vector(4 downto 0) := b"00000";
 signal tmdsclk       : std_logic;
 signal toggle        : std_logic := '0';
 
+signal   tx0_pll_reset    : std_logic;
+signal   tx0_clkfbin      : std_logic;
+signal   tx0_plllckd      : std_logic;
+signal   tx0_clkfbout     : std_logic;
+signal   tx0_pllclk2      : std_logic;
+signal   tx0_pllclk0      : std_logic;
+signal   tx0_pclkx2       : std_logic;
+signal   tx0_pclkx10      : std_logic;
+signal   tx0_bufpll_lock  : std_logic;
+signal   tx0_serdesstrobe : std_logic;
+
 begin
 
+
+------------------------------------------
+
+--PLL is used to generate three clocks:
+--1. pclk:    same rate as TMDS clock
+--2. pclkx2:  double rate of pclk used for 5:10 soft gear box and ISERDES DIVCLK
+--3. pclkx10: 10x rate of pclk used as IO clock
+i_pll_base: PLL_BASE
+generic map(
+    CLKIN_PERIOD    => 10.0,
+    CLKFBOUT_MULT   => 10,
+    CLKOUT0_DIVIDE  =>  1,
+    CLKOUT1_DIVIDE  => 10,
+    CLKOUT2_DIVIDE  =>  5,
+    COMPENSATION    => "SOURCE_SYNCHRONOUS"
+)
+port map(
+    CLKFBOUT        => tx0_clkfbout,  -- 1 bit output: PLL BASE feedback outpu
+    CLKOUT0         => tx0_pllclk0,   -- 10x clk
+    CLKOUT1         => open,         
+    CLKOUT2         => tx0_pllclk2,   -- 2x  clk
+    CLKOUT3         => open,
+    CLKOUT4         => open,
+    CLKOUT5         => open,
+    LOCKED          => tx0_plllckd,   -- 1 bit output
+    CLKFBIN         => tx0_clkfbin,   -- 1 bit input: feedback clock input
+    CLKIN           => pclk,          -- 1 bit input: clock input
+    RST             => tx0_pll_reset  -- 1 bit input: reset input
+);
+
+i_bufg_tx0_clkfb: BUFG
+port map(
+    I       => tx0_clkfbout,
+    O       => tx0_clkfbin
+);
+
+i_bufg_tx0_pclkx2: BUFG
+port map(
+    I       => tx0_pllclk2,
+    O       => tx0_pclkx2
+);
+
+
+i_bufpll_tx0_ioclk_buf: BUFPLL
+generic map(
+      DIVIDE			=> 5
+)
+port map (
+      PLLIN			=> tx0_pllclk0,      -- what clock to use, this must be unbuffered  input 	
+      GCLK			=> tx0_pclkx2,       -- global clock to use as a reference for serdes strobe input	 
+      LOCKED			=> tx0_plllckd,     -- input     output       	
+      IOCLK			=> tx0_pclkx10,      -- clock used to send bits   output
+      LOCK			=> tx0_bufpll_lock,  -- when the upstream pll is locked  output      	
+      serdesstrobe		=> tx0_serdesstrobe  -- clock used to load data into serdes output
+); 	
+
+tx0_reset <= not(tx0_bufpll_lock);
+
+
+pclkx2         <=  tx0_pclkx2;       -- : in  std_logic;
+pclkx10        <=  tx0_pclkx10;      -- : in  std_logic;
+serdesstrobe   <=  tx0_serdesstrobe; -- : in  std_logic;
+rstin          <=  tx0_reset;        -- : in  std_logic;
+
+-------------------------------------------
 
   process(pclkx2, rstin)
   begin
