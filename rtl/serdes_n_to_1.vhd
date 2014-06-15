@@ -31,23 +31,21 @@ signal cascade_do        : std_logic;
 signal cascade_ti        : std_logic;
 signal cascade_to        : std_logic;
 signal mdatain           : std_logic_vector(8 downto 0);
-signal i                 : integer := 0;
+signal I                 : integer := 0;
 
 
 begin
 
 
 
-for i in 0 to SF-1 generate
-begin
-  mdatain(i) <= datain(i);
-end generate;
+lower_half: for I in 0 to SF-1 generate
+  mdatain(I) <= datain(I);
+end generate lower_half;
 
 
-for i in SF to 8 generate
-begin
-  mdatain(i) <= '0';
-end generate;
+upper_half: for I in SF to 8 generate
+  mdatain(I) <= '0';
+end generate upper_half;
 
 
 i_OSERDES2_m : OSERDES2

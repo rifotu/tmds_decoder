@@ -78,7 +78,7 @@ mkdir "../synth/xst/work" >> ise_flow_results.txt
 xst -ifn ise_run.txt -ofn top_tmds.syr -intstyle ise | tee -a ise_flow_results.txt
 ngdbuild -intstyle ise -dd ../synth/_ngo -uc ../ucf/constraints.ucf -p xc6slx9tqg144-3 top_tmds.ngc top_tmds.ngd | tee -a  ise_flow_results.txt
 
-map -intstyle ise -detail -w -pr off -c 100 -o top_tmds_map.ncd top_tmds.ngd top_s6_axiom.pcf | tee -a  ise_flow_results.txt
+map -intstyle ise -detail -w -pr off -c 100 -o top_tmds_map.ncd top_tmds.ngd top_tmds.pcf | tee -a  ise_flow_results.txt
 par -w -intstyle ise -ol std top_tmds_map.ncd top_tmds.ncd top_tmds.pcf | tee -a  ise_flow_results.txt
 trce -e 100 top_tmds.ncd top_tmds.pcf | tee -a  ise_flow_results.txt
 bitgen -intstyle ise -f top_tmds.ut top_tmds.ncd | tee -a ise_flow_results.txt

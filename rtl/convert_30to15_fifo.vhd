@@ -4,6 +4,9 @@ use ieee.std_logic_1164.all;
 library unisim;
 use unisim.vcomponents.all;
 
+library work;
+use work.sub_module_components.all;
+
 entity convert_30to15_fifo is
 port(
       rst             : in  std_logic;
@@ -47,6 +50,7 @@ signal db            : std_logic_vector(29 downto 0) := (others => '0');
 signal mux           : std_logic_vector(14 downto 0) := (others => '0');
 
 
+attribute ASYNC_REG :  string;
 attribute ASYNC_REG of rstsync: signal is "TRUE";
 
 begin
@@ -80,6 +84,7 @@ i_fdc_wa0: FDC
 port map(
     C    => clk,
     D    => wa_d(0),
+    CLR  => rst,
     Q    => wa(0)
 );
 
@@ -87,6 +92,7 @@ i_fdc_wa1: FDC
 port map(
     C    => clk,
     D    => wa_d(1),
+    CLR  => rst,
     Q    => wa(1)
 );
 
@@ -94,6 +100,7 @@ i_fdc_wa2: FDC
 port map(
     C    => clk,
     D    => wa_d(2),
+    CLR  => rst,
     Q    => wa(2)
 );
 
@@ -101,10 +108,11 @@ i_fdc_wa3: FDC
 port map(
     C    => clk,
     D    => wa_d(3),
+    CLR  => rst,
     Q    => wa(3)
 );
 
- --Dual Port fifo to bridge data from clk to clkx2
+ --Dual Port fifo to bridge data from clk to clk2x
 i_dram16xn_fifo: DRAM16XN
 generic map(
     data_width    => 30
@@ -153,7 +161,7 @@ end process;
   
 i_fdp_rst: FDP
 port map(
-    C   => clkx2,
+    C   => clk2x,
     D   => rst,
     PRE => rst,
     Q   => rstsync
@@ -161,14 +169,14 @@ port map(
 
 i_fd_rstsync: FD
 port map(
-    C   => clkx2,
+    C   => clk2x,
     D   => rstsync,
     Q   => rstsync_q
 );
 
 i_fd_rstp: FD
 port map(
-    C   => clkx2,
+    C   => clk2x,
     D   => rstsync_q,
     Q   => rstp
 );
@@ -176,7 +184,7 @@ port map(
 
 i_fdr_sync_gen: FDR
 port map(
-    C   => clkx2,
+    C   => clk2x,
     D   => not(sync),
     Q   => sync,
     R   => rstp
@@ -185,7 +193,7 @@ port map(
 
 i_fdc_ra0: FDRE
 port map(
-    C   => clkx2,
+    C   => clk2x,
     D   => ra_d(0),
     R   => rstp,
     CE  => sync,
@@ -194,7 +202,7 @@ port map(
 
 i_fdc_ra1: FDRE
 port map(
-    C   => clkx2,
+    C   => clk2x,
     D   => ra_d(1),
     R   => rstp,
     CE  => sync,
@@ -203,7 +211,7 @@ port map(
 
 i_fdc_ra2: FDRE
 port map(
-    C   => clkx2,
+    C   => clk2x,
     D   => ra_d(2),
     R   => rstp,
     CE  => sync,
@@ -212,7 +220,7 @@ port map(
 
 i_fdc_ra3: FDRE
 port map(
-    C   => clkx2,
+    C   => clk2x,
     D   => ra_d(3),
     R   => rstp,
     CE  => sync,
@@ -221,36 +229,36 @@ port map(
 
 
 
-i_fd_db0 : FDE port map( C => clkx2, D => dataint(0 ),CE => sync, Q   => db(0)  );
-i_fd_db1 : FDE port map( C => clkx2, D => dataint(1 ),CE => sync, Q   => db(1)  );
-i_fd_db2 : FDE port map( C => clkx2, D => dataint(2 ),CE => sync, Q   => db(2)  );
-i_fd_db3 : FDE port map( C => clkx2, D => dataint(3 ),CE => sync, Q   => db(3)  );
-i_fd_db4 : FDE port map( C => clkx2, D => dataint(4 ),CE => sync, Q   => db(4)  );
-i_fd_db5 : FDE port map( C => clkx2, D => dataint(5 ),CE => sync, Q   => db(5)  );
-i_fd_db6 : FDE port map( C => clkx2, D => dataint(6 ),CE => sync, Q   => db(6)  );
-i_fd_db7 : FDE port map( C => clkx2, D => dataint(7 ),CE => sync, Q   => db(7)  );
-i_fd_db8 : FDE port map( C => clkx2, D => dataint(8 ),CE => sync, Q   => db(8)  );
-i_fd_db9 : FDE port map( C => clkx2, D => dataint(9 ),CE => sync, Q   => db(9)  );
-i_fd_db10: FDE port map( C => clkx2, D => dataint(10),CE => sync, Q   => db(10) );
-i_fd_db11: FDE port map( C => clkx2, D => dataint(11),CE => sync, Q   => db(11) );
-i_fd_db12: FDE port map( C => clkx2, D => dataint(12),CE => sync, Q   => db(12) );
-i_fd_db13: FDE port map( C => clkx2, D => dataint(13),CE => sync, Q   => db(13) );
-i_fd_db14: FDE port map( C => clkx2, D => dataint(14),CE => sync, Q   => db(14) );
-i_fd_db15: FDE port map( C => clkx2, D => dataint(15),CE => sync, Q   => db(15) );
-i_fd_db16: FDE port map( C => clkx2, D => dataint(16),CE => sync, Q   => db(16) );
-i_fd_db17: FDE port map( C => clkx2, D => dataint(17),CE => sync, Q   => db(17) );
-i_fd_db18: FDE port map( C => clkx2, D => dataint(18),CE => sync, Q   => db(18) );
-i_fd_db19: FDE port map( C => clkx2, D => dataint(19),CE => sync, Q   => db(19) );
-i_fd_db20: FDE port map( C => clkx2, D => dataint(20),CE => sync, Q   => db(20) );
-i_fd_db21: FDE port map( C => clkx2, D => dataint(21),CE => sync, Q   => db(21) );
-i_fd_db22: FDE port map( C => clkx2, D => dataint(22),CE => sync, Q   => db(22) );
-i_fd_db23: FDE port map( C => clkx2, D => dataint(23),CE => sync, Q   => db(23) );
-i_fd_db24: FDE port map( C => clkx2, D => dataint(24),CE => sync, Q   => db(24) );
-i_fd_db25: FDE port map( C => clkx2, D => dataint(25),CE => sync, Q   => db(25) );
-i_fd_db26: FDE port map( C => clkx2, D => dataint(26),CE => sync, Q   => db(26) );
-i_fd_db27: FDE port map( C => clkx2, D => dataint(27),CE => sync, Q   => db(27) );
-i_fd_db28: FDE port map( C => clkx2, D => dataint(28),CE => sync, Q   => db(28) );
-i_fd_db29: FDE port map( C => clkx2, D => dataint(29),CE => sync, Q   => db(29) );
+i_fd_db0 : FDE port map( C => clk2x, D => dataint(0 ),CE => sync, Q   => db(0)  );
+i_fd_db1 : FDE port map( C => clk2x, D => dataint(1 ),CE => sync, Q   => db(1)  );
+i_fd_db2 : FDE port map( C => clk2x, D => dataint(2 ),CE => sync, Q   => db(2)  );
+i_fd_db3 : FDE port map( C => clk2x, D => dataint(3 ),CE => sync, Q   => db(3)  );
+i_fd_db4 : FDE port map( C => clk2x, D => dataint(4 ),CE => sync, Q   => db(4)  );
+i_fd_db5 : FDE port map( C => clk2x, D => dataint(5 ),CE => sync, Q   => db(5)  );
+i_fd_db6 : FDE port map( C => clk2x, D => dataint(6 ),CE => sync, Q   => db(6)  );
+i_fd_db7 : FDE port map( C => clk2x, D => dataint(7 ),CE => sync, Q   => db(7)  );
+i_fd_db8 : FDE port map( C => clk2x, D => dataint(8 ),CE => sync, Q   => db(8)  );
+i_fd_db9 : FDE port map( C => clk2x, D => dataint(9 ),CE => sync, Q   => db(9)  );
+i_fd_db10: FDE port map( C => clk2x, D => dataint(10),CE => sync, Q   => db(10) );
+i_fd_db11: FDE port map( C => clk2x, D => dataint(11),CE => sync, Q   => db(11) );
+i_fd_db12: FDE port map( C => clk2x, D => dataint(12),CE => sync, Q   => db(12) );
+i_fd_db13: FDE port map( C => clk2x, D => dataint(13),CE => sync, Q   => db(13) );
+i_fd_db14: FDE port map( C => clk2x, D => dataint(14),CE => sync, Q   => db(14) );
+i_fd_db15: FDE port map( C => clk2x, D => dataint(15),CE => sync, Q   => db(15) );
+i_fd_db16: FDE port map( C => clk2x, D => dataint(16),CE => sync, Q   => db(16) );
+i_fd_db17: FDE port map( C => clk2x, D => dataint(17),CE => sync, Q   => db(17) );
+i_fd_db18: FDE port map( C => clk2x, D => dataint(18),CE => sync, Q   => db(18) );
+i_fd_db19: FDE port map( C => clk2x, D => dataint(19),CE => sync, Q   => db(19) );
+i_fd_db20: FDE port map( C => clk2x, D => dataint(20),CE => sync, Q   => db(20) );
+i_fd_db21: FDE port map( C => clk2x, D => dataint(21),CE => sync, Q   => db(21) );
+i_fd_db22: FDE port map( C => clk2x, D => dataint(22),CE => sync, Q   => db(22) );
+i_fd_db23: FDE port map( C => clk2x, D => dataint(23),CE => sync, Q   => db(23) );
+i_fd_db24: FDE port map( C => clk2x, D => dataint(24),CE => sync, Q   => db(24) );
+i_fd_db25: FDE port map( C => clk2x, D => dataint(25),CE => sync, Q   => db(25) );
+i_fd_db26: FDE port map( C => clk2x, D => dataint(26),CE => sync, Q   => db(26) );
+i_fd_db27: FDE port map( C => clk2x, D => dataint(27),CE => sync, Q   => db(27) );
+i_fd_db28: FDE port map( C => clk2x, D => dataint(28),CE => sync, Q   => db(28) );
+i_fd_db29: FDE port map( C => clk2x, D => dataint(29),CE => sync, Q   => db(29) );
 
 
 mux   <= db(14 downto  0) when sync = '0' else
@@ -258,21 +266,21 @@ mux   <= db(14 downto  0) when sync = '0' else
 
 
 
-i_fd_out0 : FD port map( C => clkx2, D => mux(0 ), Q => dataout(0 ) );
-i_fd_out1 : FD port map( C => clkx2, D => mux(1 ), Q => dataout(1 ) );
-i_fd_out2 : FD port map( C => clkx2, D => mux(2 ), Q => dataout(2 ) );
-i_fd_out3 : FD port map( C => clkx2, D => mux(3 ), Q => dataout(3 ) );
-i_fd_out4 : FD port map( C => clkx2, D => mux(4 ), Q => dataout(4 ) );
-i_fd_out5 : FD port map( C => clkx2, D => mux(5 ), Q => dataout(5 ) );
-i_fd_out6 : FD port map( C => clkx2, D => mux(6 ), Q => dataout(6 ) );
-i_fd_out7 : FD port map( C => clkx2, D => mux(7 ), Q => dataout(7 ) );
-i_fd_out8 : FD port map( C => clkx2, D => mux(8 ), Q => dataout(8 ) );
-i_fd_out9 : FD port map( C => clkx2, D => mux(9 ), Q => dataout(9 ) );
-i_fd_out10: FD port map( C => clkx2, D => mux(10), Q => dataout(10) );
-i_fd_out11: FD port map( C => clkx2, D => mux(11), Q => dataout(11) );
-i_fd_out12: FD port map( C => clkx2, D => mux(12), Q => dataout(12) );
-i_fd_out13: FD port map( C => clkx2, D => mux(13), Q => dataout(13) );
-i_fd_out14: FD port map( C => clkx2, D => mux(14), Q => dataout(14) );
+i_fd_out0 : FD port map( C => clk2x, D => mux(0 ), Q => dataout(0 ) );
+i_fd_out1 : FD port map( C => clk2x, D => mux(1 ), Q => dataout(1 ) );
+i_fd_out2 : FD port map( C => clk2x, D => mux(2 ), Q => dataout(2 ) );
+i_fd_out3 : FD port map( C => clk2x, D => mux(3 ), Q => dataout(3 ) );
+i_fd_out4 : FD port map( C => clk2x, D => mux(4 ), Q => dataout(4 ) );
+i_fd_out5 : FD port map( C => clk2x, D => mux(5 ), Q => dataout(5 ) );
+i_fd_out6 : FD port map( C => clk2x, D => mux(6 ), Q => dataout(6 ) );
+i_fd_out7 : FD port map( C => clk2x, D => mux(7 ), Q => dataout(7 ) );
+i_fd_out8 : FD port map( C => clk2x, D => mux(8 ), Q => dataout(8 ) );
+i_fd_out9 : FD port map( C => clk2x, D => mux(9 ), Q => dataout(9 ) );
+i_fd_out10: FD port map( C => clk2x, D => mux(10), Q => dataout(10) );
+i_fd_out11: FD port map( C => clk2x, D => mux(11), Q => dataout(11) );
+i_fd_out12: FD port map( C => clk2x, D => mux(12), Q => dataout(12) );
+i_fd_out13: FD port map( C => clk2x, D => mux(13), Q => dataout(13) );
+i_fd_out14: FD port map( C => clk2x, D => mux(14), Q => dataout(14) );
 
 
 end rtl;

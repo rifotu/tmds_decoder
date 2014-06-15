@@ -23,18 +23,7 @@ port(
 
       exrst              : in  std_logic;
  
-      rst                : out std_logic;
-      --pclk_o             : out std_logic;
-      --pclkx2_o           : out std_logic;
-      --pclkx10_o          : out std_logic;
-      
-      --pllclk0_o          : out std_logic; 
-      --pllclk1_o          : out std_logic;
-      --pllclk2_o          : out std_logic;
-
-      pll_lckd_o         : out std_logic;
-      --serdesstrobe_o     : out std_logic;
-      --tmdsclk            : out std_logic;
+      pll_lckd_o         : out std_logic;    -- bufpll output
     
       hsync              : out std_logic;
       vsync              : out std_logic;
@@ -108,8 +97,6 @@ red_vld_o   <= red_vld;
 blue_rdy_o  <= blue_rdy;
 blue_vld_o  <= blue_vld;
 
-pllclk1_o   <= pllclk1;
-pllclk2_o   <= pllclk2;
 
 sdout  <= sdout_red(9 downto 5) & sdout_green(9 downto 5) & sdout_blue(9 downto 5) &
           sdout_red(4 downto 0) & sdout_green(4 downto 0) & sdout_blue(4 downto 0);

@@ -14,17 +14,21 @@ project set "Simulator" "ISim (VHDL/Verilog)"
 
 
 
-xfile add "../rtl/components.vhd"
+xfile add "../rtl/checker.vhd"
 xfile add "../rtl/chnlbond.vhd"
+xfile add "../rtl/components.vhd"
 xfile add "../rtl/convert_30to15fifo.vhd"
 xfile add "../rtl/decode.vhd"
 xfile add "../rtl/DRAM16XN.vhd"
 xfile add "../rtl/dvi_decoder.vhd"
 xfile add "../rtl/dvi_encoder_top.vhd"
 xfile add "../rtl/encode.vhd"
+xfile add "../rtl/lfsr.vhd"
+xfile add "../rtl/pattern_gen.vhd"
 xfile add "../rtl/phsaligner.vhd"
 xfile add "../rtl/serdes_1_to_5_diff_data.vhd"
 xfile add "../rtl/serdes_n_to_1.vhd"
+xfile add "../rtl/timing.vhd"
 xfile add "../rtl/top_tmds.vhd"
 
 xfile add "../ucf/constraints.ucf"

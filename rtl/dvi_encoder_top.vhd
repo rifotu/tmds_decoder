@@ -14,10 +14,7 @@ entity dvi_encoder_top is
   port(
 
       pclk           : in  std_logic;                        -- pixel clock
-  --    pclkx2         : in  std_logic;                        -- pixel clock x2
-  --    pclkx10        : in  std_logic;
-  --    serdesstrobe   : in  std_logic;                        -- oserdes2 serdesstrobe
-  --    rstin          : in  std_logic;                        -- reset
+      i_rst          : in  std_logic;                        -- reset
 
       blue_din       : in  std_logic_vector(7 downto 0);     -- Blue data in
       green_din      : in  std_logic_vector(7 downto 0);     -- Green data in
@@ -25,8 +22,8 @@ entity dvi_encoder_top is
       hsync          : in  std_logic;                        -- hsync data
       vsync          : in  std_logic;                        -- vsync data
       de             : in  std_logic;                        -- data enable
-      tmds           : out std_logic_vector(4 downto 0);                                                       
-      tmdsb          : out std_logic_vector(4 downto 0)                                                             
+      tmds           : out std_logic_vector(3 downto 0);                                                       
+      tmdsb          : out std_logic_vector(3 downto 0)                                                             
 );
 end dvi_encoder_top;
 
@@ -47,7 +44,6 @@ signal tmdsclkint    : std_logic_vector(4 downto 0) := b"00000";
 signal tmdsclk       : std_logic;
 signal toggle        : std_logic := '0';
 
-signal   tx0_pll_reset    : std_logic;
 signal   tx0_clkfbin      : std_logic;
 signal   tx0_plllckd      : std_logic;
 signal   tx0_clkfbout     : std_logic;
@@ -57,6 +53,13 @@ signal   tx0_pclkx2       : std_logic;
 signal   tx0_pclkx10      : std_logic;
 signal   tx0_bufpll_lock  : std_logic;
 signal   tx0_serdesstrobe : std_logic;
+signal   rst_frm_bufpll   : std_logic := '0';
+
+signal   pclkx2           : std_logic;
+signal   pclkx10          : std_logic;
+signal   serdesstrobe     : std_logic;
+
+signal hsync_vsync   : std_logic_vector(1 downto 0) := "00";
 
 begin
 
@@ -87,7 +90,7 @@ port map(
     LOCKED          => tx0_plllckd,   -- 1 bit output
     CLKFBIN         => tx0_clkfbin,   -- 1 bit input: feedback clock input
     CLKIN           => pclk,          -- 1 bit input: clock input
-    RST             => tx0_pll_reset  -- 1 bit input: reset input
+    RST             => i_rst          -- 1 bit input: reset input
 );
 
 i_bufg_tx0_clkfb: BUFG
@@ -110,25 +113,25 @@ generic map(
 port map (
       PLLIN			=> tx0_pllclk0,      -- what clock to use, this must be unbuffered  input 	
       GCLK			=> tx0_pclkx2,       -- global clock to use as a reference for serdes strobe input	 
-      LOCKED			=> tx0_plllckd,     -- input     output       	
+      LOCKED			=> tx0_plllckd,      -- input     	
       IOCLK			=> tx0_pclkx10,      -- clock used to send bits   output
       LOCK			=> tx0_bufpll_lock,  -- when the upstream pll is locked  output      	
       serdesstrobe		=> tx0_serdesstrobe  -- clock used to load data into serdes output
 ); 	
 
-tx0_reset <= not(tx0_bufpll_lock);
+pclkx2        <= tx0_pclkx2;
+pclkx10       <= tx0_pclkx10;
+serdesstrobe  <= tx0_serdesstrobe;
+
+rst_frm_bufpll <= not(tx0_bufpll_lock);
 
 
-pclkx2         <=  tx0_pclkx2;       -- : in  std_logic;
-pclkx10        <=  tx0_pclkx10;      -- : in  std_logic;
-serdesstrobe   <=  tx0_serdesstrobe; -- : in  std_logic;
-rstin          <=  tx0_reset;        -- : in  std_logic;
 
 -------------------------------------------
 
-  process(pclkx2, rstin)
+  process(pclkx2, rst_frm_bufpll)
   begin
-    if(rstin = '1') then
+    if(rst_frm_bufpll = '1') then
       toggle <= '0';
     elsif (rising_edge(pclkx2)) then
       toggle <= not toggle;
@@ -137,7 +140,7 @@ rstin          <=  tx0_reset;        -- : in  std_logic;
 
   process(pclkx2)
   begin
-    if(rising_edge(pclkx2) then
+    if(rising_edge(pclkx2)) then
       if(toggle = '1') then
         tmdsclkint <= (others => '1');
       else
@@ -162,7 +165,7 @@ rstin          <=  tx0_reset;        -- : in  std_logic;
       ioclk           => pclkx10,
       serdesstrobe    => serdesstrobe,
       gclk            => pclkx2,
-      reset           => rstin,
+      reset           => rst_frm_bufpll,
       datain          => tmdsclkint
   );
 
@@ -176,7 +179,7 @@ rstin          <=  tx0_reset;        -- : in  std_logic;
       ioclk           => pclkx10,
       serdesstrobe    => serdesstrobe,
       gclk            => pclkx2,
-      reset           => rstin,
+      reset           => rst_frm_bufpll,
       datain          => tmds_data0
   );
 
@@ -191,7 +194,7 @@ rstin          <=  tx0_reset;        -- : in  std_logic;
       ioclk           => pclkx10,
       serdesstrobe    => serdesstrobe,
       gclk            => pclkx2,
-      reset           => rstin,
+      reset           => rst_frm_bufpll,
       datain          => tmds_data1
   );
 
@@ -205,7 +208,7 @@ rstin          <=  tx0_reset;        -- : in  std_logic;
       ioclk           => pclkx10,
       serdesstrobe    => serdesstrobe,
       gclk            => pclkx2,
-      reset           => rstin,
+      reset           => rst_frm_bufpll,
       datain          => tmds_data2
   );
 
@@ -231,14 +234,16 @@ rstin          <=  tx0_reset;        -- : in  std_logic;
       OB      => tmdsb(2)
   );
 
+hsync_vsync <= hsync & vsync;
 
 i_encb: encode
 port map(
 
      i_clk       => pclk,
-   --rstin       => rstin,
+   --rstin       => rst_frm_bufpll,
      i_data      => blue_din,
-     i_cntrl     => (hsync & vsync),
+     i_audio     => "0000",
+     i_cntrl     => hsync_vsync,
      i_vid_de    => de,
      i_aud_de    => '0',
      o_data      => blue
@@ -248,8 +253,9 @@ i_encg: encode
 port map(
 
      i_clk       => pclk,
-   --rstin       => rstin,
+   --rstin       => rst_frm_bufpll,
      i_data      => green_din,
+     i_audio     => "0000",
      i_cntrl     => "00",
      i_vid_de    => de,
      i_aud_de    => '0',
@@ -261,8 +267,9 @@ i_encr: encode
 port map(
 
      i_clk       => pclk,
-   --rstin       => rstin,
+   --rstin       => rst_frm_bufpll,
      i_data      => red_din,
+     i_audio     => "0000",
      i_cntrl     => "00",
      i_vid_de    => de,
      i_aud_de    => '0',
@@ -275,11 +282,11 @@ s_data  <=  red(9 downto 5) & green(9 downto 5) & blue(9 downto 5) &
 
 i_fifo_pix2x:  convert_30to15_fifo
 port map(
-    rst          => rstin,
+    rst          => rst_frm_bufpll,
     clk          => pclk,
-    clkx2        => pclkx2,
+    clk2x        => pclkx2,
     datain       => s_data,
-    datout       => fifo_out
+    dataout      => fifo_out
 
 );
 

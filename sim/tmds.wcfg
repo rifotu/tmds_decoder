@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tmds.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_signed" />
+            <top_module name="std_logic_textio" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="sub_module_components" />
+            <top_module name="tb_tmds" />
+            <top_module name="textio" />
+            <top_module name="vcomponents" />
+            <top_module name="vital_primitives" />
+            <top_module name="vital_timing" />
+            <top_module name="vpkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="86" />
+   <wvobject fp_name="divider73" type="divider">
+      <obj_property name="label">TOP_LEVEL</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_usr_rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_usr_rst</obj_property>
+      <obj_property name="ObjectShortName">i_usr_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_sys_clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_sys_clk</obj_property>
+      <obj_property name="ObjectShortName">i_sys_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_tmds" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">i_tmds[3:0]</obj_property>
+      <obj_property name="ObjectShortName">i_tmds[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_tmdsb" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">i_tmdsb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">i_tmdsb[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/o_tmds" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">o_tmds[3:0]</obj_property>
+      <obj_property name="ObjectShortName">o_tmds[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/o_tmdsb" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">o_tmdsb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">o_tmdsb[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/o_err" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">o_err</obj_property>
+      <obj_property name="ObjectShortName">o_err</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/rx_lock" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rx_lock</obj_property>
+      <obj_property name="ObjectShortName">rx_lock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/hsync_rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">hsync_rx</obj_property>
+      <obj_property name="ObjectShortName">hsync_rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/vsync_rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">vsync_rx</obj_property>
+      <obj_property name="ObjectShortName">vsync_rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/de_rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">de_rx</obj_property>
+      <obj_property name="ObjectShortName">de_rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/blue_vld_rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">blue_vld_rx</obj_property>
+      <obj_property name="ObjectShortName">blue_vld_rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/green_vld_rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">green_vld_rx</obj_property>
+      <obj_property name="ObjectShortName">green_vld_rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/red_vld_rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">red_vld_rx</obj_property>
+      <obj_property name="ObjectShortName">red_vld_rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/blue_rdy_rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">blue_rdy_rx</obj_property>
+      <obj_property name="ObjectShortName">blue_rdy_rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/green_rdy_rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">green_rdy_rx</obj_property>
+      <obj_property name="ObjectShortName">green_rdy_rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/red_rdy_rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">red_rdy_rx</obj_property>
+      <obj_property name="ObjectShortName">red_rdy_rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/psalgnerr_rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">psalgnerr_rx</obj_property>
+      <obj_property name="ObjectShortName">psalgnerr_rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/pclk_rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">pclk_rx</obj_property>
+      <obj_property name="ObjectShortName">pclk_rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/red_rx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">red_rx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">red_rx[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/green_rx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">green_rx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">green_rx[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/blue_rx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">blue_rx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">blue_rx[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/blue_tx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">blue_tx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">blue_tx[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/red_tx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">red_tx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">red_tx[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/green_tx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">green_tx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">green_tx[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/pclk_tx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">pclk_tx</obj_property>
+      <obj_property name="ObjectShortName">pclk_tx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/rst_tx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst_tx</obj_property>
+      <obj_property name="ObjectShortName">rst_tx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/hsync_tx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">hsync_tx</obj_property>
+      <obj_property name="ObjectShortName">hsync_tx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/vsync_tx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">vsync_tx</obj_property>
+      <obj_property name="ObjectShortName">vsync_tx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/de_tx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">de_tx</obj_property>
+      <obj_property name="ObjectShortName">de_tx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/rst_checker" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst_checker</obj_property>
+      <obj_property name="ObjectShortName">rst_checker</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider74" type="divider">
+      <obj_property name="label">PATTERN_GEN</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/i_clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_clk</obj_property>
+      <obj_property name="ObjectShortName">i_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/i_rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_rst</obj_property>
+      <obj_property name="ObjectShortName">i_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/o_blue" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">o_blue[7:0]</obj_property>
+      <obj_property name="ObjectShortName">o_blue[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/o_red" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">o_red[7:0]</obj_property>
+      <obj_property name="ObjectShortName">o_red[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/o_green" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">o_green[7:0]</obj_property>
+      <obj_property name="ObjectShortName">o_green[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/o_pclk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">o_pclk</obj_property>
+      <obj_property name="ObjectShortName">o_pclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/o_rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">o_rst</obj_property>
+      <obj_property name="ObjectShortName">o_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/o_hsync" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">o_hsync</obj_property>
+      <obj_property name="ObjectShortName">o_hsync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/o_vsync" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">o_vsync</obj_property>
+      <obj_property name="ObjectShortName">o_vsync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/o_de" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">o_de</obj_property>
+      <obj_property name="ObjectShortName">o_de</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/sysclk_ibuf" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">sysclk_ibuf</obj_property>
+      <obj_property name="ObjectShortName">sysclk_ibuf</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/clk50m" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk50m</obj_property>
+      <obj_property name="ObjectShortName">clk50m</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/clk50m_bufg" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk50m_bufg</obj_property>
+      <obj_property name="ObjectShortName">clk50m_bufg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/clkfx_pclk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clkfx_pclk</obj_property>
+      <obj_property name="ObjectShortName">clkfx_pclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/pclk_lckd" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">pclk_lckd</obj_property>
+      <obj_property name="ObjectShortName">pclk_lckd</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/pclk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">pclk</obj_property>
+      <obj_property name="ObjectShortName">pclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_hsblnk" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_hsblnk[10:0]</obj_property>
+      <obj_property name="ObjectShortName">tc_hsblnk[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_hssync" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_hssync[10:0]</obj_property>
+      <obj_property name="ObjectShortName">tc_hssync[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_hesync" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_hesync[10:0]</obj_property>
+      <obj_property name="ObjectShortName">tc_hesync[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_heblnk" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_heblnk[10:0]</obj_property>
+      <obj_property name="ObjectShortName">tc_heblnk[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_vsblnk" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_vsblnk[10:0]</obj_property>
+      <obj_property name="ObjectShortName">tc_vsblnk[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_vssync" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_vssync[10:0]</obj_property>
+      <obj_property name="ObjectShortName">tc_vssync[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_vesync" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_vesync[10:0]</obj_property>
+      <obj_property name="ObjectShortName">tc_vesync[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_veblnk" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_veblnk[10:0]</obj_property>
+      <obj_property name="ObjectShortName">tc_veblnk[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/bgnd_hcount" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bgnd_hcount[10:0]</obj_property>
+      <obj_property name="ObjectShortName">bgnd_hcount[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/bgnd_hblnk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">bgnd_hblnk</obj_property>
+      <obj_property name="ObjectShortName">bgnd_hblnk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/bgnd_vcount" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bgnd_vcount[10:0]</obj_property>
+      <obj_property name="ObjectShortName">bgnd_vcount[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/bgnd_vblnk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">bgnd_vblnk</obj_property>
+      <obj_property name="ObjectShortName">bgnd_vblnk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/active" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">active</obj_property>
+      <obj_property name="ObjectShortName">active</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/hsync" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">hsync</obj_property>
+      <obj_property name="ObjectShortName">hsync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/vsync" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">vsync</obj_property>
+      <obj_property name="ObjectShortName">vsync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/hsync_pre" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">hsync_pre</obj_property>
+      <obj_property name="ObjectShortName">hsync_pre</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/vsync_pre" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">vsync_pre</obj_property>
+      <obj_property name="ObjectShortName">vsync_pre</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/de" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">de</obj_property>
+      <obj_property name="ObjectShortName">de</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/pix_frm_lfsr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pix_frm_lfsr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pix_frm_lfsr[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/rst_lfsr" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst_lfsr</obj_property>
+      <obj_property name="ObjectShortName">rst_lfsr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/hpixels_hdtv720p" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">hpixels_hdtv720p</obj_property>
+      <obj_property name="ObjectShortName">hpixels_hdtv720p</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/vlines_hdtv720p" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">vlines_hdtv720p</obj_property>
+      <obj_property name="ObjectShortName">vlines_hdtv720p</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/hsyncpw_hdtv720p" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">hsyncpw_hdtv720p</obj_property>
+      <obj_property name="ObjectShortName">hsyncpw_hdtv720p</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/vsyncpw_hdtv720p" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">vsyncpw_hdtv720p</obj_property>
+      <obj_property name="ObjectShortName">vsyncpw_hdtv720p</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/hfnprch_hdtv720p" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">hfnprch_hdtv720p</obj_property>
+      <obj_property name="ObjectShortName">hfnprch_hdtv720p</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/vfnprch_hdtv720p" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">vfnprch_hdtv720p</obj_property>
+      <obj_property name="ObjectShortName">vfnprch_hdtv720p</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/hbkprch_hdtv720p" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">hbkprch_hdtv720p</obj_property>
+      <obj_property name="ObjectShortName">hbkprch_hdtv720p</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/vbkprch_hdtv720p" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">vbkprch_hdtv720p</obj_property>
+      <obj_property name="ObjectShortName">vbkprch_hdtv720p</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_hsblnk_hd" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_hsblnk_hd</obj_property>
+      <obj_property name="ObjectShortName">tc_hsblnk_hd</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_hssync_hd" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_hssync_hd</obj_property>
+      <obj_property name="ObjectShortName">tc_hssync_hd</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_hesync_hd" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_hesync_hd</obj_property>
+      <obj_property name="ObjectShortName">tc_hesync_hd</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_heblnk_hd" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_heblnk_hd</obj_property>
+      <obj_property name="ObjectShortName">tc_heblnk_hd</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_vsblnk_hd" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_vsblnk_hd</obj_property>
+      <obj_property name="ObjectShortName">tc_vsblnk_hd</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_vssync_hd" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_vssync_hd</obj_property>
+      <obj_property name="ObjectShortName">tc_vssync_hd</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_vesync_hd" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_vesync_hd</obj_property>
+      <obj_property name="ObjectShortName">tc_vesync_hd</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/tc_veblnk_hd" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">tc_veblnk_hd</obj_property>
+      <obj_property name="ObjectShortName">tc_veblnk_hd</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_tmds/i_top_tmds/i_pattern_gen/hvsync_polarity_hd" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">hvsync_polarity_hd</obj_property>
+      <obj_property name="ObjectShortName">hvsync_polarity_hd</obj_property>
+   </wvobject>
+</wave_config>
